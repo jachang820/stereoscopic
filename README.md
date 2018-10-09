@@ -9,12 +9,14 @@ with imageio.get_writer("file.gif", mode='I', duration=0.1) as writer:
 		image = imutils.resize(image, width=600)
 		writer.append_data(image)
 ```
-It may be possible to interpolate between two photos (known as *tweening*), using the **OpenCV** library. I've experimented with feature detection using FREAK and ORB algorithms (I've avoided SIFT since it seems to be proprietary). This makes it possible to find common points between two photos. Another way to do this is the Lucas Kanade or dense optical flow algorithms, which detect moving objects between frames. Although this finds more points of interest, it also appears more unstable. Interpolation works with some visible glitches in the image. This is obviously undesirable and needs to be perfected.
+It may be possible to interpolate between two photos (known as *tweening*), using the **OpenCV** library. I've experimented with feature detection using FREAK and ORB algorithms (I've avoided SIFT since it seems to be proprietary). This makes it possible to find common points between two photos. Another way to do this is the Lucas Kanade or dense optical flow algorithms, which detect moving objects between frames. Although this finds more points of interest, it also appears more unstable. The vectors between the frames are then used to distort a grid, and allow the image to be remapped. Interpolation works with some visible glitches in the image. This is obviously undesirable and needs to be perfected.
 
 ## Dependencies ##
 
 **imutils** - for scaling images
+
 **imageio** - for gif creation
+
 **opencv** - for image processing
 
 ## Authors
